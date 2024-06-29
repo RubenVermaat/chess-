@@ -1,0 +1,36 @@
+{
+    "name": "Default pieces",
+    "id": "default",
+    "cards": [
+        {
+            "id": "pawn",
+            "name": "Basic Pawn",
+            "type": "Pawn"
+        },
+        {
+            "id": "knight",
+            "name": "Basic Knight",
+            "type": "Knight"
+        },
+        {
+            "id": "rook",
+            "name": "Basic Rook",
+            "type": "Rook"
+        },
+        {
+            "id": "king",
+            "name": "Basic King",
+            "type": "King"
+        },
+        {
+            "id": "bishop",
+            "name": "Basic Bishop",
+            "type": "Bishop"
+        },
+        {
+            "id": "queen",
+            "name": "Basic Queen",
+            "type": "Queen"
+        }
+    ]
+}
