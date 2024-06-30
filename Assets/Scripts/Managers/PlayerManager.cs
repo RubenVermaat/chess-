@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
 
     public void MovePiece(GameObject newTile){
         var piece = selectedTile.GetPiece();
+        piece.GetComponent<Piece>().Moved();
         newTile.GetComponent<Tile>().AddPiece(piece);
         selectedTile.RemovePiece();
         DeselectTile();

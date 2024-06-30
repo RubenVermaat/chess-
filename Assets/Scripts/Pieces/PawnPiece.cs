@@ -10,6 +10,10 @@ public class PawnPiece : Piece
         if (direction == "up"){
             var tempTile = gridManager.GetTileAtPosition(tile.GetVectorPosition(0, 1));
             if (tempTile != null) { if (tempTile.CanMoveTo(this) == 1 && moveCheckType == MoveCheckType.Move) { tempTile.PossibleMove(); } }
+            if (firstMove){
+                tempTile = gridManager.GetTileAtPosition(tile.GetVectorPosition(0, 2));
+                if (tempTile != null) { if (tempTile.CanMoveTo(this) == 1 && moveCheckType == MoveCheckType.Move) { tempTile.PossibleMove(); } }
+            }
 
             //up-right
             tempTile = gridManager.GetTileAtPosition(tile.GetVectorPosition(1, 1));
@@ -47,6 +51,10 @@ public class PawnPiece : Piece
         else if (direction == "down"){
             var tempTile = gridManager.GetTileAtPosition(tile.GetVectorPosition(0, -1));
             if (tempTile != null) { if (tempTile.CanMoveTo(this) == 1 && moveCheckType == MoveCheckType.Move) { tempTile.PossibleMove(); } }
+            if (firstMove){
+                tempTile = gridManager.GetTileAtPosition(tile.GetVectorPosition(0, -2));
+                if (tempTile != null) { if (tempTile.CanMoveTo(this) == 1 && moveCheckType == MoveCheckType.Move) { tempTile.PossibleMove(); } }
+            }
 
             //down-right
             tempTile = gridManager.GetTileAtPosition(tile.GetVectorPosition(1, -1));
