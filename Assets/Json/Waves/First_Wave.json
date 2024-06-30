@@ -1,0 +1,16 @@
+{
+    "name": "First Wave of Piece",
+    "id": "first_wave",
+    "cards": [
+        {
+            "id": "bishoooop",
+            "name": "Bishoooop",
+            "type": "Bishop"
+        },
+        {
+            "id": "peasantQueen",
+            "name": "Peasant Queen",
+            "type": "Queen"
+        }
+    ]
+}

@@ -16,14 +16,20 @@ public class PiecesManager : MonoBehaviour
     }
     public void LoadPieces()
     {
-        string filePath = "Assets/Json/PiecesWave_1.json";
-        string json = File.ReadAllText(filePath);
-        Wave pieceWave = JsonUtility.FromJson<Wave>(json);
-        
-        foreach (var card in pieceWave.cards)
+        string folderPath = "Assets/Json/Waves/";
+        DirectoryInfo dir = new DirectoryInfo(folderPath);
+        FileInfo[] files = dir.GetFiles("*.json");
+
+        foreach (FileInfo file in files)
         {
-            card.wave = pieceWave.id;
-            pieces.Add(card);
+            string json = File.ReadAllText(file.FullName);
+            Wave pieceWave = JsonUtility.FromJson<Wave>(json);
+
+            foreach (var card in pieceWave.cards)
+            {
+                card.wave = pieceWave.id;
+                pieces.Add(card);
+            }
         }
     }
 

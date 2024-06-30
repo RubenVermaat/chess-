@@ -43,10 +43,11 @@ public class GridManager : MonoBehaviour
         cam.transform.position = new Vector3((width - 1) / 2f, (height - 1) / 2f, -10f);
     }
 
-    public void AddPieceComponent(GameObject spawnedPiece, string cardType)
+    public void AddPieceComponent(GameObject spawnedPiece, string id)
     {
+        id = char.ToUpper(id[0]) + id.Substring(1);
         // Determine the component type name based on the card type
-        string componentTypeName = cardType + "Piece";
+        string componentTypeName = id + "Piece";
 
         // Get the type of the component using reflection
         Type componentType = Assembly.GetExecutingAssembly()
@@ -66,7 +67,7 @@ public class GridManager : MonoBehaviour
 
     public void PlaceStartPiece(Card card, Vector2 pos, int team){
         var spawnedPiece = Instantiate(piecePrefab, pos, Quaternion.identity);
-        AddPieceComponent(spawnedPiece, card.type);
+        AddPieceComponent(spawnedPiece, card.id);
         spawnedPiece.GetComponent<Piece>().SetTeam(team);
         spawnedPiece.GetComponent<Piece>().SetID(card.id);
         spawnedPiece.GetComponent<Piece>().SetWave(card.wave);
