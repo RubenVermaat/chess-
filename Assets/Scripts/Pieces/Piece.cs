@@ -32,14 +32,12 @@ public class Piece : MonoBehaviour
     public virtual void Setup()
     {
         Sprite newSprite = Resources.Load<Sprite>("Textures/Pieces/" + wavePiece + "/Team_" + GetTeam + "/Piece-" + pieceID);
-        if (newSprite != null)
+        if (newSprite == null)
         {
-            GetComponent<SpriteRenderer>().sprite = newSprite;
-        }
-        else
-        {
+            newSprite = Resources.Load<Sprite>("Textures/Pieces/Team_" + GetTeam + "_Unkown");
             Debug.LogError("Sprite not found at the specified path: " + "Textures/Pieces/" + wavePiece + "/Team_" + GetTeam + "/Piece-" + pieceID);
         }
+        GetComponent<SpriteRenderer>().sprite = newSprite;
         transform.localScale = new Vector3(0.7f, 0.7f);
     }
     public virtual void Moved(){
