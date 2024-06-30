@@ -18,7 +18,7 @@ public class PawnPiece : Piece
                 { //Enemy piece
                     if (moveCheckType == MoveCheckType.Move)
                     {
-                        tempTile.PossibleMove();
+                        tempTile.PossibleCapture();
                     }
                     else if (moveCheckType == MoveCheckType.Cover)
                     {
@@ -35,7 +35,7 @@ public class PawnPiece : Piece
                 { //Enemy piece
                     if (moveCheckType == MoveCheckType.Move)
                     {
-                        tempTile.PossibleMove();
+                        tempTile.PossibleCapture();
                     }
                     else if (moveCheckType == MoveCheckType.Cover)
                     {
@@ -56,7 +56,7 @@ public class PawnPiece : Piece
                 { //Enemy piece
                     if (moveCheckType == MoveCheckType.Move)
                     {
-                        tempTile.PossibleMove();
+                        tempTile.PossibleCapture();
                     }
                 }
                 else if (moveCheckType == MoveCheckType.Cover)
@@ -73,7 +73,7 @@ public class PawnPiece : Piece
                 { //Enemy piece
                     if (moveCheckType == MoveCheckType.Move)
                     {
-                        tempTile.PossibleMove();
+                        tempTile.PossibleCapture();
                     }
                 }
                 else if (moveCheckType == MoveCheckType.Cover)

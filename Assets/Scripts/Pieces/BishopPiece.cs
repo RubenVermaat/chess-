@@ -39,7 +39,7 @@ public class BishopPiece : Piece
                     { //Enemy piece
                         if (moveCheckType == MoveCheckType.Move)
                         {
-                            tempTile.PossibleMove();
+                            tempTile.PossibleCapture();
                         }
                         else if (moveCheckType == MoveCheckType.Cover)
                         {

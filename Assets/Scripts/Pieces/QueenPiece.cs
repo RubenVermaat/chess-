@@ -30,7 +30,7 @@ public class QueenPiece : Piece
                     else if (tempTile.CanMoveTo(this) == 2)
                     { //Enemy piece
                         if (moveCheckType == MoveCheckType.Move){
-                            tempTile.PossibleMove();
+                            tempTile.PossibleCapture();
                         } else if (moveCheckType == MoveCheckType.Cover){
                             tempTile.CoveredTile();
                         }

@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject piece;
     private bool possibleMove = false;
     private bool covered = false;
+    private bool possibleCapture = false;
     private PlayerManager playerManager;
     private GameManager gameManager;
 
@@ -67,11 +68,22 @@ public class Tile : MonoBehaviour
         covered = true;
     }
 
+    public void PossibleCapture(){
+        if (piece.GetComponent<KingPiece>() == null){
+            transform.Find("Capture").gameObject.SetActive(true);
+            possibleCapture = true;
+        }else{
+            transform.Find("Capture").gameObject.SetActive(true);
+        }
+    }
+
     public void ResetTile(){
         transform.Find("PossibleMove").gameObject.SetActive(false);
         transform.Find("Covered").gameObject.SetActive(false);
+        transform.Find("Capture").gameObject.SetActive(false);
         possibleMove = false;
         covered = false;
+        possibleCapture = false;
     }
 
     #region Player ineraction
@@ -103,7 +115,7 @@ public class Tile : MonoBehaviour
                     playerManager.SwitchPlayerMode(PlayerMode.MovingPiece);
                     piece.GetComponent<Piece>().PossibleMoves(MoveCheckType.Move);
                 }else{
-                    if (possibleMove)
+                    if (possibleCapture)
                     {
                         //Moving to tile with enemy piece
                         //Making sure its a diffrent tile and movement is allowed

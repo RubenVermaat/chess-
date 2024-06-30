@@ -59,6 +59,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        //gridManager.ResetTiles();
+        gridManager.ResetTiles();
     }
 }
