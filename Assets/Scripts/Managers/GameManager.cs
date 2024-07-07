@@ -33,12 +33,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void CheckCheck(){
+        //Goes through all the tiles with pieces
+        //Maps out covered area by enemy pieces
         foreach (var tile in gridManager.GetTiles.Values)
         {
             if (tile.GetPiece() != null)
             {
                 var piece = tile.GetPiece();
-                if (piece.GetComponent<Piece>().GetTeam != turnOff) //All the enemy pieces
+                if (piece.GetComponent<Piece>().GetTeam != turnOff)
                 {
                     if(piece.GetComponent<Piece>() != null){
                         piece.GetComponent<Piece>().PossibleMoves(MoveCheckType.Cover);
@@ -46,19 +48,28 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        //Goes through all the covered tiles
+        //Checks if one of those has the king
         foreach (var tile in gridManager.GetTiles.Values)
         {
             if (tile.GetPiece() != null)
             {
                 if (tile.Covered){
                     var piece = tile.GetPiece();
-                    if (piece.GetComponent<KingPiece>() != null) //All the enemy pieces
+                    if (piece.GetComponent<KingPiece>() != null)
                     {
                         Debug.Log("Check! " + turnOff);
+                        if (!piece.GetComponent<KingPiece>().CanMove()){
+                            Debug.Log("Checkmate! " + turnOff);
+                        }
                     }
                 }
             }
         }
         gridManager.ResetTiles();
+    }
+
+    public void CheckMate(){
+        Debug.Log("Checkmate! " + turnOff);
     }
 }

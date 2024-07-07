@@ -17,6 +17,7 @@ public class Piece : MonoBehaviour
     protected string wavePiece;
     protected string direction = "up";
     protected bool firstMove = true;
+    protected int possibleMoves;
     public void Start(){
         gridManager = FindObjectOfType<GridManager>();
     }
@@ -41,7 +42,7 @@ public class Piece : MonoBehaviour
         transform.localScale = new Vector3(0.7f, 0.7f);
     }
     public virtual void Moved(){
-        //I run when the piece has moved
+        //This runs when the piece is moved
         if (firstMove){
             firstMove = false;
         }
