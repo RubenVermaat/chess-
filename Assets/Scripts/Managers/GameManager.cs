@@ -12,13 +12,16 @@ public class GameManager : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
     }
 
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
             gridManager.ResetTiles();
         }
+    }
+
+    public void StartMatch(){
+        gridManager.GenerateGrid();
     }
 
     public void NextTurn()
@@ -32,7 +35,7 @@ public class GameManager : MonoBehaviour
         CheckCheck();
     }
 
-    public void CheckCheck(){
+    public void EnemyCover(){
         //Goes through all the tiles with pieces
         //Maps out covered area by enemy pieces
         foreach (var tile in gridManager.GetTiles.Values)
@@ -42,12 +45,17 @@ public class GameManager : MonoBehaviour
                 var piece = tile.GetPiece();
                 if (piece.GetComponent<Piece>().GetTeam != turnOff)
                 {
-                    if(piece.GetComponent<Piece>() != null){
+                    if (piece.GetComponent<Piece>() != null)
+                    {
                         piece.GetComponent<Piece>().PossibleMoves(MoveCheckType.Cover);
                     }
                 }
             }
         }
+    }
+
+    public void CheckCheck(){
+        EnemyCover();
         //Goes through all the covered tiles
         //Checks if one of those has the king
         foreach (var tile in gridManager.GetTiles.Values)

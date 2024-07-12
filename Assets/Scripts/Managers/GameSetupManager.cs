@@ -12,7 +12,10 @@ public class GameSetupManager : MonoBehaviour
     void Start(){
         piecesManager = FindObjectOfType<PiecesManager>();
         playerManager = FindObjectOfType<PlayerManager>();
-        foreach (Player player in playerManager.GetPlayers){
+    }
+    public void SetupPieces(){
+        foreach (Player player in playerManager.GetPlayers)
+        {
             PlacePieces(player);
         }
     }

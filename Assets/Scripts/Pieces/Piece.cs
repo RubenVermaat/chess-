@@ -13,6 +13,7 @@ public class Piece : MonoBehaviour
     [SerializeField] private int team = 0;
     [SerializeField] protected Tile tile;
     protected GridManager gridManager;
+    protected GameManager gameManager;
     protected string pieceID;
     protected string wavePiece;
     protected string direction = "up";
@@ -20,6 +21,7 @@ public class Piece : MonoBehaviour
     protected int possibleMoves;
     public void Start(){
         gridManager = FindObjectOfType<GridManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
     public void SetTile(Tile tile) => this.tile = tile;
     public void SetTeam(int team) => this.team = team;

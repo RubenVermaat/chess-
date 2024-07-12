@@ -32,6 +32,9 @@ public class KingPiece : Piece
     }
     override public void PossibleMoves(MoveCheckType moveCheckType)
     {
+        if (moveCheckType == MoveCheckType.Move){
+            gameManager.EnemyCover();
+        }
         possibleMoves = 0;
         for (int x = -1; x <= 1; x++)
         {
@@ -43,8 +46,10 @@ public class KingPiece : Piece
                     { //No piece
                         if (moveCheckType == MoveCheckType.Move)
                         {
-                            possibleMoves++;
-                            tempTile.PossibleMove();
+                            if (!tempTile.Covered){
+                                possibleMoves++;
+                                tempTile.PossibleMove();
+                            }
                         }
                         else if (moveCheckType == MoveCheckType.Cover)
                         {
@@ -55,7 +60,10 @@ public class KingPiece : Piece
                     { //Enemy piece
                         if (moveCheckType == MoveCheckType.Move)
                         {
-                            tempTile.PossibleCapture();
+                            if (!tempTile.Covered)
+                            {
+                                tempTile.PossibleCapture();
+                            }
                         }
                         else if (moveCheckType == MoveCheckType.Cover)
                         {
@@ -65,6 +73,10 @@ public class KingPiece : Piece
                     }
                 }
             }
+        }
+        if (moveCheckType == MoveCheckType.Move)
+        {
+            gridManager.ResetTiles();
         }
     }
 }

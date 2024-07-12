@@ -12,7 +12,6 @@ public class PiecesManager : MonoBehaviour
 
     void Start(){
         gridManager = FindObjectOfType<GridManager>();
-        LoadPieces();
     }
     public void LoadPieces()
     {

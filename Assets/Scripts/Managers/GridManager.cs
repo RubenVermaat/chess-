@@ -13,17 +13,22 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int width, height;
     [SerializeField] private Tile tilePrefab;
     [SerializeField] private GameObject piecePrefab;
-    [SerializeField] private GameObject grid;
+    [SerializeField] private GameObject gameBoard;
+    private GameObject grid;
+    private GameObject pieces;
     [SerializeField] private Transform cam;
     [SerializeField] private Color enemyColor;
+    private PiecesManager piecesManager;
     private Dictionary<Vector2, Tile> tiles = new Dictionary<Vector2, Tile>();
     public Dictionary<Vector2, Tile> GetTiles => tiles;
 
     void Start() {
-        GenerateGrid();
+        grid = gameBoard.transform.Find("Grid").gameObject;
+        pieces = gameBoard.transform.Find("Pieces").gameObject;
+        piecesManager = FindObjectOfType<PiecesManager>();
     }
 
-    void GenerateGrid() {
+    public void GenerateGrid() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 //Create tile
@@ -41,6 +46,7 @@ public class GridManager : MonoBehaviour
         }
 
         cam.transform.position = new Vector3((width - 1) / 2f, (height - 1) / 2f, -10f);
+        piecesManager.LoadPieces();
     }
 
     public void AddPieceComponent(GameObject spawnedPiece, string id)
@@ -67,6 +73,8 @@ public class GridManager : MonoBehaviour
 
     public void PlaceStartPiece(Card card, Vector2 pos, int team){
         var spawnedPiece = Instantiate(piecePrefab, pos, Quaternion.identity);
+        // Set the parent of spawnedPiece to piecesObject
+        spawnedPiece.transform.parent = pieces.transform;
         AddPieceComponent(spawnedPiece, card.id);
         spawnedPiece.GetComponent<Piece>().SetTeam(team);
         spawnedPiece.GetComponent<Piece>().SetID(card.id);

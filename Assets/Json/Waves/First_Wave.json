@@ -11,6 +11,11 @@
             "id": "peasantQueen",
             "name": "Peasant Queen",
             "type": "Queen"
+        },
+        {
+            "id": "treeCutterNatasha",
+            "name": "Tree cutter Natasha",
+            "type": "Pawn"
         }
     ]
 }
